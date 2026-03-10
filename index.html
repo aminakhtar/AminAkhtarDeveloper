@@ -3,58 +3,478 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amin Akhtar</title>
+  <title>Amin Akhtar | Staff-Level Software Engineer</title>
+  <meta name="description" content="Amin Akhtar — Staff-Level Software Engineer specializing in C#/.NET distributed systems and cloud architecture." />
+
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 0; line-height: 1.5; }
-    header { padding: 20px; background: #111; color: #fff; position: sticky; top: 0; }
-    nav a { color: #fff; margin-right: 12px; text-decoration: none; opacity: 0.9; }
-    nav a.active { text-decoration: underline; opacity: 1; }
-    main { padding: 24px; max-width: 900px; margin: 0 auto; }
-    section { display: none; }
-    section.active { display: block; }
-    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 12px 0; }
+    :root{
+      --bg: #0b0f17;
+      --card: #0f1624;
+      --text: #e8eefc;
+      --muted: #a7b2cc;
+      --line: rgba(255,255,255,.10);
+      --brand: #7c5cff;
+      --brand2:#23c1ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(124,92,255,.25), transparent 60%),
+                  radial-gradient(1000px 600px at 90% 10%, rgba(35,193,255,.18), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 18px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.65);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display:flex; flex-direction: column; gap: 2px;
+      min-width: 220px;
+    }
+    .brand strong { font-size: 16px; letter-spacing: .2px; }
+    .brand span { font-size: 12px; color: var(--muted); }
+
+    nav { display:flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    nav a {
+      text-decoration: none;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    nav a:hover { border-color: var(--line); color: var(--text); }
+    nav a.active {
+      color: var(--text);
+      border-color: rgba(124,92,255,.45);
+      background: rgba(124,92,255,.10);
+    }
+
+    main { padding: 26px 0 64px; }
+    section { display:none; }
+    section.active { display:block; }
+
+    .grid2 { display:grid; grid-template-columns: 1.25fr .75fr; gap: 16px; }
+    @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+
+    .card {
+      background: rgba(15,22,36,.80);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 { margin: 4px 0 6px; font-size: 40px; line-height: 1.1; }
+    .hero h2 { margin: 0 0 14px; font-size: 14px; font-weight: 600; color: var(--muted); letter-spacing: .3px; }
+    .hero p { margin: 0 0 14px; color: rgba(232,238,252,.92); }
+
+    .pillrow { display:flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;}
+    .pill {
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .btnrow { display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 13px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(35,193,255,.75));
+      color: #081019;
+    }
+    .btn.primary:hover { transform: translateY(-1px); }
+    .btn.ghost {
+      background: rgba(255,255,255,.03);
+      border-color: var(--line);
+      color: var(--text);
+    }
+    .btn.ghost:hover { border-color: rgba(255,255,255,.18); transform: translateY(-1px); }
+
+    .meta { color: var(--muted); font-size: 13px; }
+    .meta a { color: var(--text); text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,.25); }
+    .meta a:hover { border-bottom-color: rgba(255,255,255,.55); }
+
+    .sectionTitle { margin: 0 0 12px; font-size: 20px; letter-spacing:.2px; }
+    .subtle { color: var(--muted); margin-top: 6px; }
+
+    ul { margin: 10px 0 0; padding-left: 18px; }
+    li { margin: 7px 0; color: rgba(232,238,252,.92); }
+
+    .skillGrid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 700px) { .skillGrid { grid-template-columns: 1fr; } }
+    .skillGrid .card { padding: 14px; }
+
+    .timeline { display:flex; flex-direction: column; gap: 12px; }
+    .roleHead { display:flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+    .roleHead strong { font-size: 15px; }
+    .roleHead span { color: var(--muted); font-size: 12px; }
+
+    .projGrid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 900px) { .projGrid { grid-template-columns: 1fr; } }
+
+    footer { border-top: 1px solid var(--line); padding: 22px 0; color: var(--muted); }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+    }
   </style>
 </head>
 
 <body>
   <header>
-    <h1 style="margin:0;">Amin Akhtar</h1>
-    <nav style="margin-top:10px;">
-      <a href="#home" data-route>Home</a>
-      <a href="#projects" data-route>Projects</a>
-      <a href="#about" data-route>About</a>
-      <a href="#contact" data-route>Contact</a>
-    </nav>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <strong>Amin Akhtar</strong>
+          <span>Staff-Level Software Engineer · C#/.NET Distributed Systems · Cloud</span>
+        </div>
+
+        <nav aria-label="Primary">
+          <a href="#home" data-route>Home</a>
+          <a href="#skills" data-route>Skills</a>
+          <a href="#experience" data-route>Experience</a>
+          <a href="#projects" data-route>Projects</a>
+          <a href="#education" data-route>Education</a>
+          <a href="#contact" data-route>Contact</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section id="home">
-      <h2>Home</h2>
-      <p>Welcome to my one-page web application.</p>
+  <main class="container">
+
+    <!-- HOME -->
+    <section id="home" class="active">
+      <div class="grid2">
+        <div class="card hero">
+          <h1>Amin Akhtar</h1>
+          <h2>Staff-Level Software Engineer | C# / .NET Distributed Systems | Cloud Architecture</h2>
+
+          <p>
+            Staff-level Senior Software Engineer with 11+ years of experience designing, building, and scaling
+            enterprise-grade distributed systems using C#, ASP.NET Core, and modern .NET platforms (.NET Core, .NET 6, .NET 7).
+            Proven expertise in high-traffic FinTech platforms, SaaS applications, and microservices architectures across AWS and Azure.
+          </p>
+
+          <p class="subtle">
+            Skilled in REST API design, SQL Server performance optimization, event-driven architectures,
+            SignalR real-time systems, and OAuth 2.0 / JWT authentication. Experienced leading migrations,
+            modernizing legacy platforms, and driving cross-team architecture initiatives.
+          </p>
+
+          <div class="pillrow" aria-label="Highlights">
+            <span class="pill">C# / ASP.NET Core</span>
+            <span class="pill">Distributed Systems</span>
+            <span class="pill">Microservices</span>
+            <span class="pill">AWS + Azure</span>
+            <span class="pill">Kubernetes + Docker</span>
+            <span class="pill">SQL Server</span>
+            <span class="pill">OAuth2 / JWT</span>
+            <span class="pill">SignalR</span>
+          </div>
+
+          <div class="btnrow">
+            <a class="btn primary" href="#projects" data-route>View Projects</a>
+            <a class="btn ghost" href="mailto:amin.akhtar13@gmail.com">Email</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/amin-akhtar-68a53467/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn ghost" href="https://github.com/aminakhtar" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="sectionTitle">Location & Contact</h3>
+          <p class="meta">
+            San Diego, CA 92105<br />
+            (619) 707-8602<br />
+            <a href="mailto:amin.akhtar13@gmail.com">amin.akhtar13@gmail.com</a>
+          </p>
+
+          <h3 class="sectionTitle" style="margin-top:16px;">Quick Navigation</h3>
+          <p class="meta">
+            Tip: use <span class="kbd">#</span> routes like <span class="kbd">#experience</span> or <span class="kbd">#projects</span>.
+          </p>
+        </div>
+      </div>
     </section>
 
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="sectionTitle">Core Technical Skills</h2>
+
+      <div class="skillGrid">
+        <div class="card">
+          <strong>Languages & Frameworks</strong>
+          <ul>
+            <li>C#, ASP.NET Core, .NET 6/7, ASP.NET MVC</li>
+            <li>WPF, Xamarin</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Architecture & Design</strong>
+          <ul>
+            <li>Microservices, Multi-tenant SaaS, Distributed Systems</li>
+            <li>Event-driven design</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Cloud & DevOps</strong>
+          <ul>
+            <li>AWS (Lambda, EC2, S3), Azure</li>
+            <li>CI/CD, Kubernetes, Docker, ELK Stack</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Databases & APIs</strong>
+          <ul>
+            <li>SQL Server, SQLite</li>
+            <li>REST APIs, SignalR, OAuth 2.0, JWT Authentication</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Frontend & Tools</strong>
+          <ul>
+            <li>Angular, React, TypeScript, JavaScript</li>
+            <li>Azure B2C</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <strong>Focus Areas</strong>
+          <ul>
+            <li>Performance & reliability in high-traffic systems</li>
+            <li>Security in regulated industries</li>
+            <li>Migrations / modernization</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="sectionTitle">Experience</h2>
+
+      <div class="timeline">
+        <div class="card">
+          <div class="roleHead">
+            <strong>San Diego County Credit Union (SDCCU) — Senior Software Engineer</strong>
+            <span>Sep 2024 – Jan 2026</span>
+          </div>
+          <ul>
+            <li>Architected and maintained high-traffic C# ASP.NET Core backend services and responsive React frontends for core banking platforms; handled 500K+ concurrent users with sub-500ms response times.</li>
+            <li>Designed secure REST APIs (50K+ daily transactions); integrated OAuth 2.0 + RBAC with encryption at rest/in-transit, achieving zero security incidents.</li>
+            <li>Led migration of PowerOn adapter from legacy banking libraries to modern C# .NET bookkeeping libraries, reducing latency by 60% and doubling throughput.</li>
+            <li>Built Azure DevOps CI/CD pipelines with merge-triggered deployments; established branching strategy (main/develop/feature), code review enforcement, and automated test gates.</li>
+            <li>Migrated card management features from vanilla JS/HTML/CSS to Angular + C# ASP.NET Core services, refactoring 10–15 pages with 85%+ test coverage and zero feature loss.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Agorus — Senior Software Engineer</strong>
+            <span>Apr 2023 – Sep 2024</span>
+          </div>
+          <ul>
+            <li>Architected multi-tenant SaaS platform in C# ASP.NET Core; implemented SignalR real-time conflict detection and conflict resolution UI.</li>
+            <li>Built bidirectional ERP integrations with Acumatica; implemented retry logic + idempotency, maintaining 100% data integrity across 10K+ daily transactions.</li>
+            <li>Developed low-stock alert system protecting $500K+ quarterly revenue.</li>
+            <li>Implemented OAuth 2.0 authentication + RBAC; designed tenant isolation for secure multi-client deployments.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Best Buy — Senior Software Engineer</strong>
+            <span>Oct 2022 – Apr 2023</span>
+          </div>
+          <ul>
+            <li>Designed microservices powering Geek Squad installment orders; real-time validation for 25K+ monthly orders with 99.9% success rate.</li>
+            <li>Built pub/sub event-driven notification system with 99.99% reliability; orchestrated background jobs for scheduling and status updates.</li>
+            <li>Integrated 8+ third-party systems via REST APIs + webhooks; implemented idempotent adapters.</li>
+            <li>Containerized 12+ microservices with Docker, deployed to Kubernetes with autoscaling; reduced deployment time 45 min → 11 min and maintained 99.95% SLA uptime.</li>
+            <li>Implemented centralized ELK monitoring for 2TB+ daily logs; dashboards reduced incident detection time 30 min → 6 min.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Trulioo — Software Engineer</strong>
+            <span>Apr 2022 – Sep 2022</span>
+          </div>
+          <ul>
+            <li>Built AWS Lambda ETL pipelines in C# for identity verification; improved throughput by 60% and reduced latency by 40%.</li>
+            <li>Optimized parsing + concurrency to reduce verification time 5 min → 2 min.</li>
+            <li>Added Redis caching layer; reduced API latency 800ms → 200ms supporting 10K+ concurrent requests.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Red Door Interactive — Software Developer</strong>
+            <span>Oct 2018 – Apr 2022</span>
+          </div>
+          <ul>
+            <li>Led migration of SDCCU digital platforms (500K+ users) from Kentico legacy to Kentico 13 + .NET 6; decomposed monolith into modular ASP.NET Core services and improved load times by 45% (WCAG 2.1 AA).</li>
+            <li>Built customer-facing platforms using ASP.NET Core MVC + JavaScript; implemented Azure B2C authentication and preferences for 50K+ users.</li>
+            <li>SME for Bosch/Thermador agent rewards platform; implemented commission tracking + incentive calculations, improving reporting by 60% and increasing engagement by 35%.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Willis Towers Watson — Software Engineer</strong>
+            <span>Jan 2017 – Oct 2018</span>
+          </div>
+          <ul>
+            <li>Developed pension and healthcare management platform for 50+ Fortune 500 companies in C# ASP.NET Core; customized for client-specific benefits + compliance.</li>
+            <li>Built high-performance microservices and optimized SQL Server stored procedures by 40%; reduced report generation time 2 min → 72 sec.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="roleHead">
+            <strong>Navigant Consulting Company — Software Developer</strong>
+            <span>Apr 2015 – Jan 2017</span>
+          </div>
+          <ul>
+            <li>Developed desktop utility using C# and WPF; extended cross-platform with Xamarin for e-discovery document processing.</li>
+            <li>Implemented OCR integration + accuracy validation for legal documents.</li>
+            <li>Built regex-based pattern recognition engine to identify legal entities, contract dates, and clauses.</li>
+            <li>Created automated parsing/organization pipeline, reducing manual review time by 60%.</li>
+            <li>Built CSV import + SQLite layer with validation checks for reliable metadata storage and querying.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
     <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <h3>Project 1</h3>
-        <p>Description...</p>
-      </div>
-      <div class="card">
-        <h3>Project 2</h3>
-        <p>Description...</p>
+      <h2 class="sectionTitle">Projects</h2>
+
+      <div class="projGrid">
+        <div class="card">
+          <strong>Personal AI Agent (AminAgent)</strong>
+          <p class="subtle">Personal AI agent with my work background knowledge.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="https://github.com/aminakhtar/AminAgent" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn ghost" href="https://youtu.be/psMhElP2Xg8" target="_blank" rel="noreferrer">Demo</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Load File Utility (LFU)</strong>
+          <p class="subtle">Developed a Load File Utility.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="https://github.com/aminakhtar/LFU" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn ghost" href="https://youtu.be/jbYyzYyfQTw?si=3zdfu28Byx3GFPVb" target="_blank" rel="noreferrer">Demo</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>API File Management</strong>
+          <p class="subtle">File management API project.</p>
+          <div class="btnrow">
+            <a class="btn primary" href="https://github.com/aminakhtar/FileManagement" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn ghost" href="https://youtu.be/U4aGpJ1GP4I?si=8mP5CIZd8xIRfYlT" target="_blank" rel="noreferrer">Demo</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <strong>Drink Tracker</strong>
+          <p class="subtle">Authentication + tracking backend (repo link).</p>
+          <div class="btnrow">
+            <a class="btn primary" href="https://github.com/aminakhtar/DrinkTrackerAuth/tree/main/DrinkTrackerAuth" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="about">
-      <h2>About</h2>
-      <p>Write a short bio here.</p>
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="sectionTitle">Education</h2>
+      <div class="card">
+        <ul>
+          <li><strong>Western Illinois University</strong> — M.S. in Computer Science (2012 – 2014)</li>
+          <li><strong>Hamedan Azad University</strong> — B.S. in Software Engineering (2004 – 2008)</li>
+        </ul>
+      </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <h2 class="sectionTitle">Contact</h2>
+      <div class="card">
+        <p class="meta">
+          San Diego, CA 92105 · (619) 707-8602<br />
+          Email: <a href="mailto:amin.akhtar13@gmail.com">amin.akhtar13@gmail.com</a><br />
+          LinkedIn: <a href="https://www.linkedin.com/in/amin-akhtar-68a53467/" target="_blank" rel="noreferrer">linkedin.com/in/amin-akhtar-68a53467</a><br />
+          GitHub: <a href="https://github.com/aminakhtar" target="_blank" rel="noreferrer">github.com/aminakhtar</a>
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="mailto:amin.akhtar13@gmail.com">Email Me</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/amin-akhtar-68a53467/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn ghost" href="https://github.com/aminakhtar" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn ghost" href="#home" data-route>Back to Home</a>
+        </div>
+      </div>
     </section>
+
   </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Amin Akhtar · Built as a single-page portfolio (hash-based SPA).</small>
+    </div>
+  </footer>
 
   <script>
     function setRoute() {
@@ -67,13 +487,28 @@
       });
 
       // active nav link
-      document.querySelectorAll("a[data-route]").forEach(a => {
+      document.querySelectorAll("nav a[data-route]").forEach(a => {
         a.classList.toggle("active", a.getAttribute("href") === hash);
       });
+
+      // if unknown route, fallback
+      const exists = !!document.getElementById(route);
+      if (!exists) {
+        window.location.hash = "#home";
+      }
     }
 
+    // make "data-route" links behave consistently
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[data-route]");
+      if (!a) return;
+      // allow default hash behavior; setRoute will run on hashchange
+    });
+
     window.addEventListener("hashchange", setRoute);
-    setRoute(); // initial load
+    setRoute();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
