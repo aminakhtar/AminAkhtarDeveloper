@@ -1,1 +1,79 @@
-<h1>Amin Akhtar</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amin Akhtar</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; line-height: 1.5; }
+    header { padding: 20px; background: #111; color: #fff; position: sticky; top: 0; }
+    nav a { color: #fff; margin-right: 12px; text-decoration: none; opacity: 0.9; }
+    nav a.active { text-decoration: underline; opacity: 1; }
+    main { padding: 24px; max-width: 900px; margin: 0 auto; }
+    section { display: none; }
+    section.active { display: block; }
+    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 12px 0; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 style="margin:0;">Amin Akhtar</h1>
+    <nav style="margin-top:10px;">
+      <a href="#home" data-route>Home</a>
+      <a href="#projects" data-route>Projects</a>
+      <a href="#about" data-route>About</a>
+      <a href="#contact" data-route>Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Home</h2>
+      <p>Welcome to my one-page web application.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>Project 1</h3>
+        <p>Description...</p>
+      </div>
+      <div class="card">
+        <h3>Project 2</h3>
+        <p>Description...</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>Write a short bio here.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+    </section>
+  </main>
+
+  <script>
+    function setRoute() {
+      const hash = window.location.hash || "#home";
+      const route = hash.replace("#", "");
+
+      // show/hide sections
+      document.querySelectorAll("main section").forEach(sec => {
+        sec.classList.toggle("active", sec.id === route);
+      });
+
+      // active nav link
+      document.querySelectorAll("a[data-route]").forEach(a => {
+        a.classList.toggle("active", a.getAttribute("href") === hash);
+      });
+    }
+
+    window.addEventListener("hashchange", setRoute);
+    setRoute(); // initial load
+  </script>
+</body>
+</html>
